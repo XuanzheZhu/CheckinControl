@@ -26,15 +26,15 @@ class ViewController: UIViewController, StreamDelegate {
         NetworkEnable()
     }
     
-    @IBAction func sendTest(_ sender: Any) {
-        btnSendTestPressed()
+    @IBAction func switchToRegisterMode(_ sender: Any) {
+        btnSwitchToRegisterPressed()
     }
     
-    @IBAction func sendQuit(_ sender: Any) {
-        btnSendQuitPressed()
+    @IBAction func switchToCheckinMode(_ sender: Any) {
+        btnSwitchToCheckinPressed()
     }
     
-    @IBOutlet weak var inputBox: UILabel!
+    @IBOutlet weak var statusBox: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +42,13 @@ class ViewController: UIViewController, StreamDelegate {
     }
     
     // MARK: Button Actions
-    func btnSendTestPressed() {
-        let strToSend = "Test"
+    func btnSwitchToRegisterPressed() {
+        let strToSend = "register"
         outStream?.write(strToSend, maxLength: strToSend.utf8.count)
         //let bytesWritten = message.withUnsafeBytes { outStream?.write($0, maxLength: message.count) }
     }
-    func btnSendQuitPressed() {
-        let strToSend = "Quit"
+    func btnSwitchToCheckinPressed() {
+        let strToSend = "checkin"
         outStream?.write(strToSend, maxLength: strToSend.utf8.count)
     }
     
@@ -75,7 +75,7 @@ class ViewController: UIViewController, StreamDelegate {
         switch eventCode {
         case Stream.Event.endEncountered:
             print("EndEncountered")
-            //labelConnection.text = "Connection stopped by server"
+            statusBox.text = "Connection stopped by server"
             inStream?.close()
             inStream?.remove(from: RunLoop.current, forMode: RunLoop.Mode.default)
             outStream?.close()
@@ -87,22 +87,20 @@ class ViewController: UIViewController, StreamDelegate {
             inStream?.remove(from: RunLoop.current, forMode: RunLoop.Mode.default)
             outStream?.close()
             outStream?.remove(from: RunLoop.current, forMode: RunLoop.Mode.default)
-            //labelConnection.text = "Failed to connect to server"
-            //label.text = ""
+            statusBox.text = "Failed to connect to server"
         case Stream.Event.hasBytesAvailable:
             print("HasBytesAvailable")
             if aStream == inStream {
                 inStream!.read(&buffer, maxLength: buffer.count)
                 let bufferStr = NSString(bytes: &buffer, length: buffer.count, encoding: String.Encoding.utf8.rawValue)
-                //label.text = bufferStr! as String
                 print(bufferStr!)
-                inputBox.text = bufferStr! as String
+                statusBox.text = bufferStr! as String
             }
         case Stream.Event.hasSpaceAvailable:
             print("HasSpaceAvailable")
         case Stream.Event.openCompleted:
             print("OpenCompleted")
-            //labelConnection.text = "Connected to server"
+            statusBox.text = "Connected to server"
         default:
             print("Unknown")
         }

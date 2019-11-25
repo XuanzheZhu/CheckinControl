@@ -16,30 +16,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftt-ry-PYr">
-                                <rect key="frame" x="16" y="50" width="1080" height="30"/>
+                                <rect key="frame" x="20" y="50" width="1072" height="30"/>
                                 <state key="normal" title="Connect to Server"/>
                                 <connections>
                                     <action selector="connectServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cgk-TP-LOE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bL-y7-kLK">
-                                <rect key="frame" x="16" y="88" width="1080" height="30"/>
-                                <state key="normal" title="Send &quot;Test&quot;"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bL-y7-kLK">
+                                <rect key="frame" x="20" y="88" width="526" height="30"/>
+                                <state key="normal" title="Switch to Register Mode"/>
                                 <connections>
-                                    <action selector="sendTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kdq-56-PNz"/>
+                                    <action selector="switchToRegisterMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9aC-Wi-ybl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQU-sh-WtA">
-                                <rect key="frame" x="16" y="126" width="1080" height="30"/>
-                                <state key="normal" title="Send &quot;Quit&quot;"/>
+                                <rect key="frame" x="566" y="88" width="526" height="30"/>
+                                <state key="normal" title="Switch to Checkin Mode"/>
                                 <connections>
-                                    <action selector="sendQuit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LA5-WB-TLo"/>
+                                    <action selector="switchToCheckinMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vp9-Hx-Ft5"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Reveived: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCD-uQ-luL">
-                                <rect key="frame" x="16" y="164" width="1080" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCD-uQ-luL">
+                                <rect key="frame" x="82" y="126" width="1010" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="rFP-Ou-E7w"/>
+                                    <constraint firstAttribute="height" constant="30" id="rFP-Ou-E7w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHG-ob-nYZ">
+                                <rect key="frame" x="20" y="126" width="54" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Umi-11-zNh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -48,23 +57,25 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7bL-y7-kLK" secondAttribute="trailing" constant="16" id="1C0-kW-rpg"/>
-                            <constraint firstItem="7bL-y7-kLK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2WP-N4-gva"/>
-                            <constraint firstItem="RCD-uQ-luL" firstAttribute="top" secondItem="BQU-sh-WtA" secondAttribute="bottom" constant="8" id="U6o-tc-uci"/>
-                            <constraint firstItem="BQU-sh-WtA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Yqc-T9-tZf"/>
-                            <constraint firstItem="BQU-sh-WtA" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="chl-DB-9lp"/>
-                            <constraint firstItem="Ftt-ry-PYr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="fOQ-yB-2B2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RCD-uQ-luL" secondAttribute="trailing" constant="16" id="h8w-kI-0zO"/>
-                            <constraint firstItem="Ftt-ry-PYr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="sT1-Kg-qI7"/>
-                            <constraint firstItem="RCD-uQ-luL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="vGN-7e-e58"/>
-                            <constraint firstItem="7bL-y7-kLK" firstAttribute="top" secondItem="Ftt-ry-PYr" secondAttribute="bottom" constant="8" id="veB-EJ-7Ad"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ftt-ry-PYr" secondAttribute="trailing" constant="16" id="yKe-7O-o4B"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BQU-sh-WtA" secondAttribute="trailing" constant="16" id="ypc-eS-xil"/>
+                            <constraint firstItem="BQU-sh-WtA" firstAttribute="leading" secondItem="7bL-y7-kLK" secondAttribute="trailing" constant="20" id="2Zj-XD-8ns"/>
+                            <constraint firstItem="Ftt-ry-PYr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="3Q8-a6-k3m"/>
+                            <constraint firstItem="7bL-y7-kLK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7bb-Ea-thD"/>
+                            <constraint firstItem="lHG-ob-nYZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BQ4-Tk-g3m"/>
+                            <constraint firstItem="RCD-uQ-luL" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="SaB-xL-fsP"/>
+                            <constraint firstItem="BQU-sh-WtA" firstAttribute="width" secondItem="7bL-y7-kLK" secondAttribute="width" id="TT4-lm-jPU"/>
+                            <constraint firstItem="7bL-y7-kLK" firstAttribute="top" secondItem="Ftt-ry-PYr" secondAttribute="bottom" constant="8" id="Uu1-rL-D9I"/>
+                            <constraint firstItem="Ftt-ry-PYr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="WdQ-i8-Bn2"/>
+                            <constraint firstItem="lHG-ob-nYZ" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="YpM-ls-Kfb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ftt-ry-PYr" secondAttribute="trailing" constant="20" id="fFZ-9u-7yI"/>
+                            <constraint firstItem="RCD-uQ-luL" firstAttribute="leading" secondItem="lHG-ob-nYZ" secondAttribute="trailing" constant="8" id="fWf-EV-7ee"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RCD-uQ-luL" secondAttribute="trailing" constant="20" id="fYy-95-vdR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BQU-sh-WtA" secondAttribute="trailing" constant="20" id="pro-88-hWx"/>
+                            <constraint firstItem="BQU-sh-WtA" firstAttribute="top" secondItem="Ftt-ry-PYr" secondAttribute="bottom" constant="8" id="yad-k4-BhO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="inputBox" destination="RCD-uQ-luL" id="cWI-A6-tMo"/>
+                        <outlet property="statusBox" destination="RCD-uQ-luL" id="AbM-sa-t8i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
