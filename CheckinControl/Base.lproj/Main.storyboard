@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,51 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CheckinControl" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftt-ry-PYr">
+                                <rect key="frame" x="16" y="50" width="1080" height="30"/>
+                                <state key="normal" title="Connect to Server"/>
+                                <connections>
+                                    <action selector="connectServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cgk-TP-LOE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bL-y7-kLK">
+                                <rect key="frame" x="16" y="88" width="1080" height="30"/>
+                                <state key="normal" title="Send &quot;Test&quot;"/>
+                                <connections>
+                                    <action selector="sendTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kdq-56-PNz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQU-sh-WtA">
+                                <rect key="frame" x="16" y="126" width="1080" height="30"/>
+                                <state key="normal" title="Send &quot;Quit&quot;"/>
+                                <connections>
+                                    <action selector="sendQuit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LA5-WB-TLo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7bL-y7-kLK" secondAttribute="trailing" constant="16" id="1C0-kW-rpg"/>
+                            <constraint firstItem="7bL-y7-kLK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2WP-N4-gva"/>
+                            <constraint firstItem="BQU-sh-WtA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Yqc-T9-tZf"/>
+                            <constraint firstItem="BQU-sh-WtA" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="chl-DB-9lp"/>
+                            <constraint firstItem="Ftt-ry-PYr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="fOQ-yB-2B2"/>
+                            <constraint firstItem="Ftt-ry-PYr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="sT1-Kg-qI7"/>
+                            <constraint firstItem="7bL-y7-kLK" firstAttribute="top" secondItem="Ftt-ry-PYr" secondAttribute="bottom" constant="8" id="veB-EJ-7Ad"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ftt-ry-PYr" secondAttribute="trailing" constant="16" id="yKe-7O-o4B"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BQU-sh-WtA" secondAttribute="trailing" constant="16" id="ypc-eS-xil"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="138.40000000000001" y="129.98500749625188"/>
         </scene>
     </scenes>
 </document>
