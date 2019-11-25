@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F60BBB9238C40D400562C78 /* StudentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F60BBB8238C40D400562C78 /* StudentList.swift */; };
 		6F61BEBF2383B564000B449F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F61BEBE2383B564000B449F /* AppDelegate.swift */; };
 		6F61BEC12383B564000B449F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F61BEC02383B564000B449F /* SceneDelegate.swift */; };
 		6F61BEC32383B564000B449F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F61BEC22383B564000B449F /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F60BBB8238C40D400562C78 /* StudentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentList.swift; sourceTree = "<group>"; };
 		6F61BEBB2383B564000B449F /* CheckinControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckinControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F61BEBE2383B564000B449F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F61BEC02383B564000B449F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				6F61BEBE2383B564000B449F /* AppDelegate.swift */,
 				6F61BEC02383B564000B449F /* SceneDelegate.swift */,
+				6F60BBB8238C40D400562C78 /* StudentList.swift */,
 				6F61BEC22383B564000B449F /* ViewController.swift */,
 				6F61BEC42383B565000B449F /* Main.storyboard */,
 				6F61BEC72383B566000B449F /* Assets.xcassets */,
@@ -203,6 +206,7 @@
 				6F61BEC32383B564000B449F /* ViewController.swift in Sources */,
 				6F61BEBF2383B564000B449F /* AppDelegate.swift in Sources */,
 				6F61BEC12383B564000B449F /* SceneDelegate.swift in Sources */,
+				6F60BBB9238C40D400562C78 /* StudentList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

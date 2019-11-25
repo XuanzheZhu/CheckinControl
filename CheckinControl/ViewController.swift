@@ -54,7 +54,6 @@ class ViewController: UIViewController, StreamDelegate {
     
     // MARK: Network Actions
     func NetworkEnable() {
-        
         print("NetworkEnable")
         Stream.getStreamsToHost(withName: addr, port: port, inputStream: &inStream, outputStream: &outStream)
         
@@ -71,7 +70,6 @@ class ViewController: UIViewController, StreamDelegate {
     }
     
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
-        
         switch eventCode {
         case Stream.Event.endEncountered:
             print("EndEncountered")
