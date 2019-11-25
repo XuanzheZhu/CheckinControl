@@ -33,7 +33,9 @@ class ViewController: UIViewController, StreamDelegate {
     @IBAction func sendQuit(_ sender: Any) {
         btnSendQuitPressed()
     }
-
+    
+    @IBOutlet weak var inputBox: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -50,7 +52,7 @@ class ViewController: UIViewController, StreamDelegate {
         outStream?.write(strToSend, maxLength: strToSend.utf8.count)
     }
     
-    //Network functions
+    // MARK: Network Actions
     func NetworkEnable() {
         
         print("NetworkEnable")
@@ -89,21 +91,18 @@ class ViewController: UIViewController, StreamDelegate {
             //label.text = ""
         case Stream.Event.hasBytesAvailable:
             print("HasBytesAvailable")
-            
             if aStream == inStream {
                 inStream!.read(&buffer, maxLength: buffer.count)
                 let bufferStr = NSString(bytes: &buffer, length: buffer.count, encoding: String.Encoding.utf8.rawValue)
                 //label.text = bufferStr! as String
                 print(bufferStr!)
+                inputBox.text = bufferStr! as String
             }
-            
         case Stream.Event.hasSpaceAvailable:
             print("HasSpaceAvailable")
-            
         case Stream.Event.openCompleted:
             print("OpenCompleted")
             //labelConnection.text = "Connected to server"
-            
         default:
             print("Unknown")
         }

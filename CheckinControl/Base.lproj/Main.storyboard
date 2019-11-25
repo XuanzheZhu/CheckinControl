@@ -36,25 +36,40 @@
                                     <action selector="sendQuit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LA5-WB-TLo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Reveived: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCD-uQ-luL">
+                                <rect key="frame" x="16" y="164" width="1080" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="rFP-Ou-E7w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7bL-y7-kLK" secondAttribute="trailing" constant="16" id="1C0-kW-rpg"/>
                             <constraint firstItem="7bL-y7-kLK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="2WP-N4-gva"/>
+                            <constraint firstItem="RCD-uQ-luL" firstAttribute="top" secondItem="BQU-sh-WtA" secondAttribute="bottom" constant="8" id="U6o-tc-uci"/>
                             <constraint firstItem="BQU-sh-WtA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Yqc-T9-tZf"/>
                             <constraint firstItem="BQU-sh-WtA" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="chl-DB-9lp"/>
                             <constraint firstItem="Ftt-ry-PYr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="fOQ-yB-2B2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RCD-uQ-luL" secondAttribute="trailing" constant="16" id="h8w-kI-0zO"/>
                             <constraint firstItem="Ftt-ry-PYr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="sT1-Kg-qI7"/>
+                            <constraint firstItem="RCD-uQ-luL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="vGN-7e-e58"/>
                             <constraint firstItem="7bL-y7-kLK" firstAttribute="top" secondItem="Ftt-ry-PYr" secondAttribute="bottom" constant="8" id="veB-EJ-7Ad"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ftt-ry-PYr" secondAttribute="trailing" constant="16" id="yKe-7O-o4B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BQU-sh-WtA" secondAttribute="trailing" constant="16" id="ypc-eS-xil"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="inputBox" destination="RCD-uQ-luL" id="cWI-A6-tMo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138.40000000000001" y="129.98500749625188"/>
+            <point key="canvasLocation" x="138.12949640287769" y="129.49640287769785"/>
         </scene>
     </scenes>
 </document>
