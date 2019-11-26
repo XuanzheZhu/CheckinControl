@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StudentList {
+class Student {
     
     //MARK: Properties
     var studentID: String

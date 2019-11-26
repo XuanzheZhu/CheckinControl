@@ -8,19 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController, StreamDelegate {
+class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    //MARK: Properties
+    // MARK: Properties
     //Socket server
-    let addr = "10.180.107.248"
+    let addr = "10.180.146.206"
     let port = 9876
     
-    //Network variables
+    // Network variables
     var inStream : InputStream?
     var outStream: OutputStream?
     
-    //Data received
+    // Data received
     var buffer = [UInt8](repeating: 0, count: 200)
+    
+    // Student list variables
+    var status = 1; // register->0, checkin->1
+    var studentList: [Student] = []
     
     @IBAction func connectServer(_ sender: Any) {
         NetworkEnable()
@@ -35,24 +39,64 @@ class ViewController: UIViewController, StreamDelegate {
     }
     
     @IBOutlet weak var statusBox: UILabel!
+    @IBOutlet weak var studentListTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        studentListTable.delegate = self
+        studentListTable.dataSource = self
+
+        // Temporary values for testing
+        guard let student1 = Student(studentID: "111", registerStatus: false, checkinStatus: false) else {
+            fatalError("Unable to add student 1")
+        }
+        guard let student2 = Student(studentID: "222", registerStatus: false, checkinStatus: false) else {
+            fatalError("Unable to add student 2")
+        }
+        studentList += [student1, student2]
+    }
+    
+    // MARK: Student List Table Setup
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return studentList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "StudentCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? StudentListTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        }
+        
+        let student = studentList[indexPath.row]
+        cell.studentIDLabel.text = student.studentID
+        cell.registerStatusLabel.text = student.registerStatus ? "True" : "False"
+        cell.checkinStatusLabel.text = student.checkinStatus ? "True" : "False"
+        
+        return cell
     }
     
     // MARK: Button Actions
     func btnSwitchToRegisterPressed() {
-        let strToSend = "register"
-        outStream?.write(strToSend, maxLength: strToSend.utf8.count)
-        //let bytesWritten = message.withUnsafeBytes { outStream?.write($0, maxLength: message.count) }
+        sendMessage(strToSend: "register")
+        status = 0
     }
     func btnSwitchToCheckinPressed() {
-        let strToSend = "checkin"
-        outStream?.write(strToSend, maxLength: strToSend.utf8.count)
+        sendMessage(strToSend: "checkin")
+        status = 1
     }
     
     // MARK: Network Actions
+    func sendMessage(strToSend: String) {
+        outStream?.write(strToSend, maxLength: strToSend.utf8.count)
+    }
+    
     func NetworkEnable() {
         print("NetworkEnable")
         Stream.getStreamsToHost(withName: addr, port: port, inputStream: &inStream, outputStream: &outStream)
@@ -65,8 +109,6 @@ class ViewController: UIViewController, StreamDelegate {
         
         inStream?.open()
         outStream?.open()
-        
-        buffer = [UInt8](repeating: 0, count: 200)
     }
     
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
@@ -89,6 +131,7 @@ class ViewController: UIViewController, StreamDelegate {
         case Stream.Event.hasBytesAvailable:
             print("HasBytesAvailable")
             if aStream == inStream {
+                buffer = [UInt8](repeating: 0, count: 200)
                 inStream!.read(&buffer, maxLength: buffer.count)
                 let bufferStr = NSString(bytes: &buffer, length: buffer.count, encoding: String.Encoding.utf8.rawValue)
                 print(bufferStr!)
