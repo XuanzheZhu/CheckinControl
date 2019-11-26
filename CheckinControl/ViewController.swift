@@ -5,7 +5,7 @@
 //  Created by Xuanzhe Zhu on 2019/11/19.
 //  Copyright © 2019 XuanzheZhu. All rights reserved.
 //
-// test
+
 import UIKit
 
 class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -38,6 +38,26 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         btnSwitchToCheckinPressed()
     }
     
+    @IBAction func clearRegisterStatus(_ sender: Any) {
+        sendMessage(strToSend: "clearCheckin")
+        for student in studentList {
+            student.registerStatus = false
+            student.checkinStatus = false
+            student.checkinTime = "Not Avaliable"
+        }
+        refreshTable()
+    }
+    
+    @IBAction func clearCheckinStatus(_ sender: Any) {
+        sendMessage(strToSend: "clearRegister")
+        for student in studentList {
+            student.checkinStatus = false
+            student.checkinTime = "Not Avaliable"
+        }
+        refreshTable()
+    }
+    
+    
     @IBOutlet weak var statusBox: UILabel!
     @IBOutlet weak var studentListTable: UITableView!
     
@@ -55,7 +75,10 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         guard let student2 = Student(studentID: "222", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
             fatalError("Unable to add student 2")
         }
-        studentList += [student1, student2]
+        guard let student3 = Student(studentID: "333", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
+            fatalError("Unable to add student 3")
+        }
+        studentList += [student1, student2, student3]
     }
     
     // MARK: Student List Table Setup

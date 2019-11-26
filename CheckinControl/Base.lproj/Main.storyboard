@@ -36,8 +36,24 @@
                                     <action selector="switchToCheckinMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vp9-Hx-Ft5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdH-I7-QE9">
+                                <rect key="frame" x="20" y="126" width="526" height="30"/>
+                                <state key="normal" title="Clear Register Status"/>
+                                <connections>
+                                    <action selector="clearRegisterStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3qz-s4-Mvv"/>
+                                    <action selector="switchToRegisterMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YN1-ED-V40"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRU-rx-EZH">
+                                <rect key="frame" x="566" y="126" width="526" height="30"/>
+                                <state key="normal" title="Clear Checkin Status"/>
+                                <connections>
+                                    <action selector="clearCheckinStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IDc-jm-viX"/>
+                                    <action selector="switchToCheckinMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mWU-Io-WHs"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHG-ob-nYZ">
-                                <rect key="frame" x="20" y="126" width="54" height="30"/>
+                                <rect key="frame" x="20" y="164" width="54" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Umi-11-zNh"/>
                                 </constraints>
@@ -46,7 +62,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCD-uQ-luL">
-                                <rect key="frame" x="82" y="126" width="1010" height="30"/>
+                                <rect key="frame" x="82" y="164" width="1010" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="rFP-Ou-E7w"/>
                                 </constraints>
@@ -55,7 +71,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hWo-qp-6e3">
-                                <rect key="frame" x="20" y="164" width="1072" height="650"/>
+                                <rect key="frame" x="20" y="202" width="1072" height="612"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentCell" id="xcD-6H-7us" customClass="StudentListTableViewCell" customModule="CheckinControl" customModuleProvider="target">
@@ -127,22 +143,30 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="BQU-sh-WtA" firstAttribute="leading" secondItem="7bL-y7-kLK" secondAttribute="trailing" constant="20" id="2Zj-XD-8ns"/>
+                            <constraint firstItem="ZdH-I7-QE9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2lD-rn-6hn"/>
                             <constraint firstItem="Ftt-ry-PYr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="3Q8-a6-k3m"/>
+                            <constraint firstItem="cRU-rx-EZH" firstAttribute="width" secondItem="ZdH-I7-QE9" secondAttribute="width" id="7Mc-t6-KzH"/>
                             <constraint firstItem="7bL-y7-kLK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7bb-Ea-thD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hWo-qp-6e3" secondAttribute="bottom" constant="20" id="AhX-d9-LX2"/>
                             <constraint firstItem="lHG-ob-nYZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BQ4-Tk-g3m"/>
+                            <constraint firstItem="RCD-uQ-luL" firstAttribute="top" secondItem="ZdH-I7-QE9" secondAttribute="bottom" constant="8" id="K3t-5j-pxo"/>
+                            <constraint firstItem="cRU-rx-EZH" firstAttribute="top" secondItem="BQU-sh-WtA" secondAttribute="bottom" constant="8" id="KLq-oB-57N"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hWo-qp-6e3" secondAttribute="trailing" constant="20" id="KSx-yM-m8d"/>
-                            <constraint firstItem="RCD-uQ-luL" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="SaB-xL-fsP"/>
+                            <constraint firstItem="RCD-uQ-luL" firstAttribute="leading" secondItem="lHG-ob-nYZ" secondAttribute="trailing" constant="8" id="LEq-eb-Tbd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RCD-uQ-luL" secondAttribute="trailing" constant="20" id="Qgf-mJ-wAE"/>
                             <constraint firstItem="BQU-sh-WtA" firstAttribute="width" secondItem="7bL-y7-kLK" secondAttribute="width" id="TT4-lm-jPU"/>
                             <constraint firstItem="7bL-y7-kLK" firstAttribute="top" secondItem="Ftt-ry-PYr" secondAttribute="bottom" constant="8" id="Uu1-rL-D9I"/>
                             <constraint firstItem="Ftt-ry-PYr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="WdQ-i8-Bn2"/>
-                            <constraint firstItem="lHG-ob-nYZ" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="YpM-ls-Kfb"/>
+                            <constraint firstItem="cRU-rx-EZH" firstAttribute="leading" secondItem="ZdH-I7-QE9" secondAttribute="trailing" constant="20" id="Yfn-Qh-D5z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ftt-ry-PYr" secondAttribute="trailing" constant="20" id="fFZ-9u-7yI"/>
                             <constraint firstItem="RCD-uQ-luL" firstAttribute="leading" secondItem="lHG-ob-nYZ" secondAttribute="trailing" constant="8" id="fWf-EV-7ee"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RCD-uQ-luL" secondAttribute="trailing" constant="20" id="fYy-95-vdR"/>
                             <constraint firstItem="hWo-qp-6e3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="nME-rd-Qxg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BQU-sh-WtA" secondAttribute="trailing" constant="20" id="pro-88-hWx"/>
+                            <constraint firstItem="lHG-ob-nYZ" firstAttribute="top" secondItem="ZdH-I7-QE9" secondAttribute="bottom" constant="8" id="qre-W8-0VC"/>
+                            <constraint firstItem="ZdH-I7-QE9" firstAttribute="top" secondItem="7bL-y7-kLK" secondAttribute="bottom" constant="8" id="rWQ-3y-Fw5"/>
+                            <constraint firstItem="RCD-uQ-luL" firstAttribute="leading" secondItem="lHG-ob-nYZ" secondAttribute="trailing" constant="8" id="tUl-2H-RSy"/>
                             <constraint firstItem="hWo-qp-6e3" firstAttribute="top" secondItem="RCD-uQ-luL" secondAttribute="bottom" constant="8" id="tqe-mf-SR0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cRU-rx-EZH" secondAttribute="trailing" constant="20" id="yJR-o7-bhs"/>
                             <constraint firstItem="BQU-sh-WtA" firstAttribute="top" secondItem="Ftt-ry-PYr" secondAttribute="bottom" constant="8" id="yad-k4-BhO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
