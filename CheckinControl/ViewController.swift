@@ -86,6 +86,8 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     func btnSwitchToRegisterPressed() {
         sendMessage(strToSend: "register")
         status = 0
+        studentList[0].registerStatus = true
+        DispatchQueue.main.async { self.studentListTable.reloadData() }
     }
     func btnSwitchToCheckinPressed() {
         sendMessage(strToSend: "checkin")
