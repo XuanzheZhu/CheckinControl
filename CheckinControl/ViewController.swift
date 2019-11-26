@@ -49,10 +49,10 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         studentListTable.dataSource = self
 
         // Temporary values for testing
-        guard let student1 = Student(studentID: "111", registerStatus: false, checkinStatus: false) else {
+        guard let student1 = Student(studentID: "111", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
             fatalError("Unable to add student 1")
         }
-        guard let student2 = Student(studentID: "222", registerStatus: false, checkinStatus: false) else {
+        guard let student2 = Student(studentID: "222", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
             fatalError("Unable to add student 2")
         }
         studentList += [student1, student2]
@@ -78,16 +78,23 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         cell.studentIDLabel.text = student.studentID
         cell.registerStatusLabel.text = student.registerStatus ? "True" : "False"
         cell.checkinStatusLabel.text = student.checkinStatus ? "True" : "False"
+        cell.checkinTime.text = student.checkinTime
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendMessage(strToSend: studentList[indexPath.row].studentID)
+    }
+    
+    func refreshTable() {
+        DispatchQueue.main.async { self.studentListTable.reloadData() }
     }
     
     // MARK: Button Actions
     func btnSwitchToRegisterPressed() {
         sendMessage(strToSend: "register")
         status = 0
-        studentList[0].registerStatus = true
-        DispatchQueue.main.async { self.studentListTable.reloadData() }
     }
     func btnSwitchToCheckinPressed() {
         sendMessage(strToSend: "checkin")
@@ -138,6 +145,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
                 let bufferStr = NSString(bytes: &buffer, length: buffer.count, encoding: String.Encoding.utf8.rawValue)
                 print(bufferStr!)
                 statusBox.text = bufferStr! as String
+                updateList(message: bufferStr! as String)
             }
         case Stream.Event.hasSpaceAvailable:
             print("HasSpaceAvailable")
@@ -151,6 +159,34 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: Private Methods
+    func updateList(message: String) {
+        let possibleStudentID = message.components(separatedBy: " ")[0]
+        let possibleIDInteger: Int? = Int(possibleStudentID)
+        if possibleIDInteger != nil {
+            if status == 0 {
+                for student in studentList {
+                    if student.studentID == possibleStudentID {
+                        student.registerStatus = true
+                    }
+                }
+            }
+            else if status == 1 {
+                let date = Date()
+                let format = DateFormatter()
+                format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let formattedDate = format.string(from: date)
+                for student in studentList {
+                    if student.studentID == possibleStudentID {
+                        student.checkinStatus = true
+                        student.checkinTime = formattedDate
+                    }
+                }
+            }
+            refreshTable()
+        }
     }
 
 }

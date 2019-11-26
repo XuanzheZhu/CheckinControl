@@ -14,7 +14,8 @@ class StudentListTableViewCell: UITableViewCell {
     @IBOutlet weak var studentIDLabel: UILabel!
     @IBOutlet weak var registerStatusLabel: UILabel!
     @IBOutlet weak var checkinStatusLabel: UILabel!
-
+    @IBOutlet weak var checkinTime: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -14,9 +14,10 @@ class Student {
     var studentID: String
     var registerStatus: Bool
     var checkinStatus: Bool
+    var checkinTime: String
     
     //MARK: Initialization
-    init?(studentID: String, registerStatus: Bool, checkinStatus: Bool) {
+    init?(studentID: String, registerStatus: Bool, checkinStatus: Bool, checkinTime: String) {
         
         guard !studentID.isEmpty else {
             return nil
@@ -25,6 +26,7 @@ class Student {
         self.studentID = studentID
         self.registerStatus = registerStatus
         self.checkinStatus = checkinStatus
+        self.checkinTime = checkinTime
         
     }
     

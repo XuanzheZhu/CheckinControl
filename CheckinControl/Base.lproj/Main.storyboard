@@ -65,31 +65,58 @@
                                             <rect key="frame" x="0.0" y="0.0" width="1072" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="student ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJC-Qs-VHk">
-                                                    <rect key="frame" x="15" y="11" width="79" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="student ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJC-Qs-VHk">
+                                                    <rect key="frame" x="15" y="10.5" width="100" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="YLR-1I-PfG"/>
+                                                        <constraint firstAttribute="height" constant="22" id="cS8-aJ-0JO"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Checkin Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD9-wo-FD1">
-                                                    <rect key="frame" x="378" y="11" width="116" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkin Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD9-wo-FD1">
+                                                    <rect key="frame" x="295" y="11" width="120" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="hWr-1o-wfT"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Register Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-lI-jTz">
-                                                    <rect key="frame" x="175" y="11" width="117" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkin Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCh-ON-alv">
+                                                    <rect key="frame" x="445" y="11" width="240" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="240" id="ziY-gA-CDP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-lI-jTz">
+                                                    <rect key="frame" x="145" y="11" width="120" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="fuP-p3-6bZ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="PJC-Qs-VHk" firstAttribute="top" secondItem="cl4-GC-DE2" secondAttribute="top" constant="10.5" id="1hW-xP-bEk"/>
+                                                <constraint firstItem="1Qx-lI-jTz" firstAttribute="leading" secondItem="PJC-Qs-VHk" secondAttribute="trailing" constant="30" id="KRl-ZR-4Aw"/>
+                                                <constraint firstItem="RD9-wo-FD1" firstAttribute="leading" secondItem="1Qx-lI-jTz" secondAttribute="trailing" constant="30" id="Rf6-hM-DdO"/>
+                                                <constraint firstItem="cCh-ON-alv" firstAttribute="leading" secondItem="RD9-wo-FD1" secondAttribute="trailing" constant="30" id="TcD-pp-DcU"/>
+                                                <constraint firstItem="PJC-Qs-VHk" firstAttribute="leading" secondItem="cl4-GC-DE2" secondAttribute="leading" constant="15" id="Vek-PD-Dxu"/>
+                                                <constraint firstItem="1Qx-lI-jTz" firstAttribute="top" secondItem="cl4-GC-DE2" secondAttribute="topMargin" id="ZAS-DE-C2D"/>
+                                                <constraint firstItem="cCh-ON-alv" firstAttribute="top" secondItem="cl4-GC-DE2" secondAttribute="topMargin" id="gfg-Rq-Hi3"/>
+                                                <constraint firstItem="RD9-wo-FD1" firstAttribute="top" secondItem="cl4-GC-DE2" secondAttribute="topMargin" id="l45-Ac-IFL"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="checkinStatusLabel" destination="RD9-wo-FD1" id="3u6-of-q4y"/>
+                                            <outlet property="checkinTime" destination="cCh-ON-alv" id="eng-ak-cZh"/>
                                             <outlet property="registerStatusLabel" destination="1Qx-lI-jTz" id="aWT-Ka-HT7"/>
                                             <outlet property="studentIDLabel" destination="PJC-Qs-VHk" id="QDk-Td-tu9"/>
                                         </connections>
