@@ -39,7 +39,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     }
     
     @IBAction func clearRegisterStatus(_ sender: Any) {
-        sendMessage(strToSend: "clearCheckin")
+        sendMessage(strToSend: "clearRegister")
         for student in studentList {
             student.registerStatus = false
             student.checkinStatus = false
@@ -49,7 +49,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     }
     
     @IBAction func clearCheckinStatus(_ sender: Any) {
-        sendMessage(strToSend: "clearRegister")
+        sendMessage(strToSend: "clearCheckin")
         for student in studentList {
             student.checkinStatus = false
             student.checkinTime = "Not Avaliable"
@@ -58,6 +58,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     }
     
     
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusBox: UILabel!
     @IBOutlet weak var studentListTable: UITableView!
     
@@ -109,7 +110,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row > 1 {
+        if indexPath.row > 0 {
             sendMessage(strToSend: studentList[indexPath.row - 1].studentID)
         }
     }
@@ -122,10 +123,12 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     func btnSwitchToRegisterPressed() {
         sendMessage(strToSend: "register")
         status = 0
+        statusLabel.text = "Status: Register Mode"
     }
     func btnSwitchToCheckinPressed() {
         sendMessage(strToSend: "checkin")
         status = 1
+        statusLabel.text = "Status: Checkin Mode"
     }
     
     // MARK: Network Actions
