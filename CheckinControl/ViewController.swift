@@ -12,7 +12,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     
     // MARK: Properties
     //Socket server
-    let addr = "10.180.146.206"
+    let addr = "10.180.4.208"
     let port = 9876
     
     // Network variables
@@ -87,7 +87,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentList.count
+        return studentList.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,17 +97,21 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         
-        let student = studentList[indexPath.row]
-        cell.studentIDLabel.text = student.studentID
-        cell.registerStatusLabel.text = student.registerStatus ? "True" : "False"
-        cell.checkinStatusLabel.text = student.checkinStatus ? "True" : "False"
-        cell.checkinTime.text = student.checkinTime
+        if indexPath.row > 0 {
+            let student = studentList[indexPath.row - 1]
+            cell.studentIDLabel.text = student.studentID
+            cell.registerStatusLabel.text = student.registerStatus ? "True" : "False"
+            cell.checkinStatusLabel.text = student.checkinStatus ? "True" : "False"
+            cell.checkinTime.text = student.checkinTime
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sendMessage(strToSend: studentList[indexPath.row].studentID)
+        if indexPath.row > 1 {
+            sendMessage(strToSend: studentList[indexPath.row - 1].studentID)
+        }
     }
     
     func refreshTable() {
