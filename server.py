@@ -7,7 +7,7 @@ import threading
 import ctypes
 #import RPi.GPIO as GPIO
 #define host ip: Rpi's IP
-HOST_IP = "10.180.146.206" #"10.180.0.4"
+HOST_IP = "10.180.4.208" #"10.180.0.4"
 HOST_PORT = 9876
 print("Starting socket: TCP...")
 #1.create socket object:socket=socket.socket(family,type)
@@ -24,7 +24,7 @@ socket_tcp.listen(1)
 #4.waite for client:connection,address=socket.accept()
 socket_con, (client_ip, client_port) = socket_tcp.accept()
 print("Connection accepted from %s." %client_ip)
-socket_con.send(bytes("Welcome to RPi TCP server!", 'UTF-8'))
+socket_con.send(bytes("Welcome to RPi checkin control server!", 'UTF-8'))
 print("Receiving package...")
 
 # status : 0->register, 1->checkin, 3->clear
@@ -92,10 +92,15 @@ def checkin():
             studentList.close()
             socket_con.send(bytes(hashMap[cardID] + " has been checked in", 'UTF-8'))
 
-def clear():
+def clearCheckin():
     studentList = open("studentList.csv", "w")
     for cardID in hashMap:
         studentList.write(cardID + "," + hashMap[cardID] + ",0" + "\n")
+    studentList.close()
+
+def clearRegister():
+    hashMap.clear()
+    studentList = open("studentList.csv", "w")
     studentList.close()
 
 class thread_with_exception(threading.Thread): 
@@ -146,7 +151,9 @@ while True:
                 checkin_thread.start()
                 socket_con.send(bytes("Switched to " + command + " mode", 'UTF-8'))
             elif command == "clearCheckin":
-                clear()
+                clearCheckin()
+            elif command == "clearRegister":
+                clearRegister()
             else:
                 if status == 0:
                     register(command)

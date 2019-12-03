@@ -5,10 +5,10 @@ import time
 import sys
 import threading
 import ctypes
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 #define host ip: Rpi's IP
-HOST_IP = "10.180.0.4"
-HOST_PORT = 8888
+HOST_IP = "10.180.4.208" #"10.180.0.4"
+HOST_PORT = 9876
 print("Starting socket: TCP...")
 #1.create socket object:socket=socket.socket(family,type)
 socket_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,13 +16,15 @@ socket_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("TCP server listen @ %s:%d!" %(HOST_IP, HOST_PORT) )
 host_addr = (HOST_IP, HOST_PORT)
 #2.bind socket to addr:socket.bind(address)
+#Prevent socket.error: [Errno 98] Address already in use
+socket_tcp.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 socket_tcp.bind(host_addr)
 #3.listen connection request:socket.listen(backlog)
 socket_tcp.listen(1)
 #4.waite for client:connection,address=socket.accept()
 socket_con, (client_ip, client_port) = socket_tcp.accept()
 print("Connection accepted from %s." %client_ip)
-socket_con.send(bytes("Welcome to RPi TCP server!", 'UTF-8'))
+socket_con.send(bytes("Welcome to RPi checkin control server!", 'UTF-8'))
 print("Receiving package...")
 
 # status : 0->register, 1->checkin, 3->clear
@@ -110,6 +112,17 @@ def checkin():
             studentList.close()
             socket_con.send(bytes(hashMap[cardID] + " has been checked in", 'UTF-8'))
 
+def clearCheckin():
+    studentList = open("studentList.csv", "w")
+    for cardID in hashMap:
+        studentList.write(cardID + "," + hashMap[cardID] + ",0" + "\n")
+    studentList.close()
+
+def clearRegister():
+    hashMap.clear()
+    studentList = open("studentList.csv", "w")
+    studentList.close()
+
 class thread_with_exception(threading.Thread): 
     def __init__(self, name): 
         threading.Thread.__init__(self) 
@@ -157,6 +170,10 @@ while True:
                 checkin_thread = thread_with_exception('Thread 1')
                 checkin_thread.start()
                 socket_con.send(bytes("Switched to " + command + " mode", 'UTF-8'))
+            elif command == "clearCheckin":
+                clearCheckin()
+            elif command == "clearRegister":
+                clearRegister()
             else:
                 if status == 0:
                     register(command)
