@@ -42,6 +42,7 @@
 		6F61BED12383B566000B449F /* CheckinControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheckinControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F61BED52383B566000B449F /* CheckinControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinControlTests.swift; sourceTree = "<group>"; };
 		6F61BED72383B566000B449F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FD83BAE239656360082FE43 /* CheckinControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckinControl.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 		6F61BEBD2383B564000B449F /* CheckinControl */ = {
 			isa = PBXGroup;
 			children = (
+				6FD83BAE239656360082FE43 /* CheckinControl.entitlements */,
 				6F61BEBE2383B564000B449F /* AppDelegate.swift */,
 				6F61BEC02383B564000B449F /* SceneDelegate.swift */,
 				6F60BBB8238C40D400562C78 /* Student.swift */,
@@ -370,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CheckinControl/CheckinControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RHWX63AW2;
 				INFOPLIST_FILE = CheckinControl/Info.plist;
@@ -379,6 +382,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.CheckinControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -388,6 +392,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CheckinControl/CheckinControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RHWX63AW2;
 				INFOPLIST_FILE = CheckinControl/Info.plist;
@@ -397,6 +402,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.CheckinControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

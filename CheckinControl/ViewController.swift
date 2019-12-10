@@ -12,7 +12,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     
     // MARK: Properties
     //Socket server
-    let addr = "10.180.4.208"
+    let addr = "192.168.1.1"
     let port = 9876
     
     // Network variables
@@ -26,8 +26,19 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     var status = 1; // register->0, checkin->1
     var studentList: [Student] = []
     
+    let documentInteractionController = UIDocumentInteractionController()
+    private let docDirPath:NSString = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as NSString).appendingPathComponent("StudentList.csv") as NSString
+    
+    lazy var manager:FileManager = {
+        return FileManager.default
+    }()
+    
     @IBAction func connectServer(_ sender: Any) {
         NetworkEnable()
+    }
+    
+    @IBAction func saveCheckinStatus(_ sender: Any) {
+        saveCheckinTable(withURLString: docDirPath as String)
     }
     
     @IBAction func switchToRegisterMode(_ sender: Any) {
@@ -68,18 +79,30 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         
         studentListTable.delegate = self
         studentListTable.dataSource = self
+        
+        documentInteractionController.delegate = self
 
         // Temporary values for testing
-        guard let student1 = Student(studentID: "111", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
+        guard let student1 = Student(studentID: "3160101111", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
             fatalError("Unable to add student 1")
         }
-        guard let student2 = Student(studentID: "222", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
+        guard let student2 = Student(studentID: "3160102222", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
             fatalError("Unable to add student 2")
         }
-        guard let student3 = Student(studentID: "333", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
+        guard let student3 = Student(studentID: "3160103333", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
             fatalError("Unable to add student 3")
         }
         studentList += [student1, student2, student3]
+        
+        let testStr: String = """
+1111,True,True,2019-01-01 14:24:35
+2222,False,True,2019-12-05 14:39:35
+"""
+        
+        if !self.manager.fileExists(atPath: docDirPath as String) {
+            let data: Data? = testStr.data(using: .utf8)
+            self.manager.createFile(atPath: docDirPath as String, contents: data, attributes: nil)
+        }
     }
     
     // MARK: Student List Table Setup
@@ -219,4 +242,54 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         }
     }
 
+}
+
+extension ViewController {
+    /// This function will set all the required properties, and then provide a preview for the document
+    func share(url: URL) {
+        documentInteractionController.url = url
+        documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
+        documentInteractionController.name = url.localizedName ?? url.lastPathComponent
+        documentInteractionController.presentPreview(animated: true)
+    }
+    
+    /// This function will store your document to some temporary URL and then provide sharing, copying, printing, saving options to the user
+    func saveCheckinTable(withURLString: String) {
+        let url = NSURL.fileURL(withPath: withURLString)
+        // guard let url = URL(string: withURLString) else { return }
+        /// START YOUR ACTIVITY INDICATOR HERE
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            let tmpURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent(response?.suggestedFilename ?? "filename.txt")
+            do {
+                try data.write(to: tmpURL)
+            } catch {
+                print(error)
+            }
+            DispatchQueue.main.async {
+                /// STOP YOUR ACTIVITY INDICATOR HERE
+                self.share(url: tmpURL)
+            }
+            }.resume()
+    }
+}
+
+extension ViewController: UIDocumentInteractionControllerDelegate {
+    /// If presenting atop a navigation stack, provide the navigation controller in order to animate in a manner consistent with the rest of the platform
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        guard let navVC = self.navigationController else {
+            return self
+        }
+        return navVC
+    }
+}
+
+extension URL {
+    var typeIdentifier: String? {
+        return (try? resourceValues(forKeys: [.typeIdentifierKey]))?.typeIdentifier
+    }
+    var localizedName: String? {
+        return (try? resourceValues(forKeys: [.localizedNameKey]))?.localizedName
+    }
 }
