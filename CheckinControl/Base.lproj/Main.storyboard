@@ -17,42 +17,42 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftt-ry-PYr">
                                 <rect key="frame" x="20" y="50" width="387" height="30"/>
-                                <state key="normal" title="Connect to Server"/>
+                                <state key="normal" title="连接到树莓派服务器"/>
                                 <connections>
                                     <action selector="connectServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cgk-TP-LOE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzO-kc-nKa">
                                 <rect key="frame" x="427" y="50" width="387" height="30"/>
-                                <state key="normal" title="Save Checkin Status"/>
+                                <state key="normal" title="查看并保存当前签到状态"/>
                                 <connections>
                                     <action selector="saveCheckinStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bPx-DA-FOZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bL-y7-kLK">
                                 <rect key="frame" x="20" y="88" width="387" height="30"/>
-                                <state key="normal" title="Switch to Register Mode"/>
+                                <state key="normal" title="切换到注册模式"/>
                                 <connections>
                                     <action selector="switchToRegisterMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9aC-Wi-ybl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQU-sh-WtA">
                                 <rect key="frame" x="427" y="88" width="387" height="30"/>
-                                <state key="normal" title="Switch to Checkin Mode"/>
+                                <state key="normal" title="切换到签到模式"/>
                                 <connections>
                                     <action selector="switchToCheckinMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vp9-Hx-Ft5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdH-I7-QE9">
                                 <rect key="frame" x="20" y="126" width="387" height="30"/>
-                                <state key="normal" title="Clear Register Status"/>
+                                <state key="normal" title="清除注册状态"/>
                                 <connections>
                                     <action selector="clearRegisterStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3qz-s4-Mvv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRU-rx-EZH">
                                 <rect key="frame" x="427" y="126" width="387" height="30"/>
-                                <state key="normal" title="Clear Checkin Status"/>
+                                <state key="normal" title="清除签到状态"/>
                                 <connections>
                                     <action selector="clearCheckinStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IDc-jm-viX"/>
                                 </connections>
@@ -86,25 +86,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="794" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkin Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD9-wo-FD1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="签到状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD9-wo-FD1">
                                                     <rect key="frame" x="402" y="11.5" width="183.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checkin Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCh-ON-alv">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="签到时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCh-ON-alv">
                                                     <rect key="frame" x="595.5" y="11.5" width="183.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-lI-jTz">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-lI-jTz">
                                                     <rect key="frame" x="208.5" y="11.5" width="183.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJC-Qs-VHk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJC-Qs-VHk">
                                                     <rect key="frame" x="15" y="11.5" width="183.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

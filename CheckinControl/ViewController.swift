@@ -12,7 +12,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     
     // MARK: Properties
     //Socket server
-    let addr = "192.168.1.1"
+    let addr = "172.20.10.3"
     let port = 9876
     
     // Network variables
@@ -82,27 +82,35 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         
         documentInteractionController.delegate = self
 
-        // Temporary values for testing
-        guard let student1 = Student(studentID: "3160101111", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
-            fatalError("Unable to add student 1")
+        guard self.manager.fileExists(atPath: docDirPath as String) else {
+            fatalError("No student list file")
         }
-        guard let student2 = Student(studentID: "3160102222", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
-            fatalError("Unable to add student 2")
+        let studentStr = String(decoding: self.manager.contents(atPath: docDirPath as String)!, as: UTF8.self)
+        let studentArray = studentStr.components(separatedBy: "\n")
+        for student in studentArray {
+            if student.lengthOfBytes(using: .utf8) < 2 {
+                break
+            }
+            let tempStudent = student.components(separatedBy: ",")
+            if tempStudent[0] == "Student ID" {
+                continue
+            }
+            guard let newStudent = Student(studentID: tempStudent[0], registerStatus: tempStudent[1] == "True" ? true : false, checkinStatus: false, checkinTime: "Not Avaliable") else {
+                fatalError("Error when retrive student from list")
+            }
+            studentList += [newStudent]
         }
-        guard let student3 = Student(studentID: "3160103333", registerStatus: false, checkinStatus: false, checkinTime: "Not Avaliable") else {
-            fatalError("Unable to add student 3")
-        }
-        studentList += [student1, student2, student3]
-        
+        /*
         let testStr: String = """
-1111,True,True,2019-01-01 14:24:35
-2222,False,True,2019-12-05 14:39:35
+3160101111,False,False,Not Avaliable
+3160102222,False,False,Not Avaliable
 """
         
         if !self.manager.fileExists(atPath: docDirPath as String) {
             let data: Data? = testStr.data(using: .utf8)
             self.manager.createFile(atPath: docDirPath as String, contents: data, attributes: nil)
         }
+ */
     }
     
     // MARK: Student List Table Setup
@@ -239,7 +247,20 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
                 }
             }
             refreshTable()
+            refreshListFile()
         }
+    }
+    
+    func refreshListFile() {
+        var strToWrite: String = "Student ID,Register Status,Checkin Status,Checkin Time\n"
+        for student in studentList {
+            var tempStrToWrite: String = ""
+            tempStrToWrite += (student.studentID + "," + (student.registerStatus == true ? "True" : "False") + "," + (student.checkinStatus == true ? "True" : "False") + "," + student.checkinTime + "\n")
+            strToWrite += tempStrToWrite
+        }
+        try! self.manager.removeItem(atPath: docDirPath as String)
+        let data: Data? = strToWrite.data(using: .utf8)
+        self.manager.createFile(atPath: docDirPath as String, contents: data, attributes: nil)
     }
 
 }
