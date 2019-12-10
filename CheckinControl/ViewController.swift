@@ -54,7 +54,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         for student in studentList {
             student.registerStatus = false
             student.checkinStatus = false
-            student.checkinTime = "Not Avaliable"
+            student.checkinTime = "不可用"
         }
         refreshTable()
     }
@@ -63,7 +63,7 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         sendMessage(strToSend: "clearCheckin")
         for student in studentList {
             student.checkinStatus = false
-            student.checkinTime = "Not Avaliable"
+            student.checkinTime = "不可用"
         }
         refreshTable()
     }
@@ -92,25 +92,14 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
                 break
             }
             let tempStudent = student.components(separatedBy: ",")
-            if tempStudent[0] == "Student ID" {
+            if tempStudent[0] == "学号" {
                 continue
             }
-            guard let newStudent = Student(studentID: tempStudent[0], registerStatus: tempStudent[1] == "True" ? true : false, checkinStatus: false, checkinTime: "Not Avaliable") else {
+            guard let newStudent = Student(studentID: tempStudent[0], registerStatus: tempStudent[1] == "已注册" ? true : false, checkinStatus: false, checkinTime: "不可用") else {
                 fatalError("Error when retrive student from list")
             }
             studentList += [newStudent]
         }
-        /*
-        let testStr: String = """
-3160101111,False,False,Not Avaliable
-3160102222,False,False,Not Avaliable
-"""
-        
-        if !self.manager.fileExists(atPath: docDirPath as String) {
-            let data: Data? = testStr.data(using: .utf8)
-            self.manager.createFile(atPath: docDirPath as String, contents: data, attributes: nil)
-        }
- */
     }
     
     // MARK: Student List Table Setup
@@ -132,8 +121,8 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         if indexPath.row > 0 {
             let student = studentList[indexPath.row - 1]
             cell.studentIDLabel.text = student.studentID
-            cell.registerStatusLabel.text = student.registerStatus ? "True" : "False"
-            cell.checkinStatusLabel.text = student.checkinStatus ? "True" : "False"
+            cell.registerStatusLabel.text = student.registerStatus ? "已注册" : "未注册"
+            cell.checkinStatusLabel.text = student.checkinStatus ? "已签到" : "未签到"
             cell.checkinTime.text = student.checkinTime
         }
         
@@ -154,12 +143,12 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     func btnSwitchToRegisterPressed() {
         sendMessage(strToSend: "register")
         status = 0
-        statusLabel.text = "Status: Register Mode"
+        statusLabel.text = "状态：注册模式"
     }
     func btnSwitchToCheckinPressed() {
         sendMessage(strToSend: "checkin")
         status = 1
-        statusLabel.text = "Status: Checkin Mode"
+        statusLabel.text = "状态：签到模式"
     }
     
     // MARK: Network Actions
@@ -252,10 +241,10 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     }
     
     func refreshListFile() {
-        var strToWrite: String = "Student ID,Register Status,Checkin Status,Checkin Time\n"
+        var strToWrite: String = "学号,注册状态,签到状态,签到时间\n"
         for student in studentList {
             var tempStrToWrite: String = ""
-            tempStrToWrite += (student.studentID + "," + (student.registerStatus == true ? "True" : "False") + "," + (student.checkinStatus == true ? "True" : "False") + "," + student.checkinTime + "\n")
+            tempStrToWrite += (student.studentID + "," + (student.registerStatus == true ? "已注册" : "未注册") + "," + (student.checkinStatus == true ? "已签到" : "未签到") + "," + student.checkinTime + "\n")
             strToWrite += tempStrToWrite
         }
         try! self.manager.removeItem(atPath: docDirPath as String)
