@@ -12,8 +12,8 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     
     // MARK: Properties
     //Socket server
-    let addr = "172.20.10.3"
-    let port = 9876
+    let addr = "192.168.1.1" //"10.180.144.50"
+    let port = 8765
     
     // Network variables
     var inStream : InputStream?
@@ -54,18 +54,20 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
         for student in studentList {
             student.registerStatus = false
             student.checkinStatus = false
-            student.checkinTime = "不可用"
+            student.checkinTime = "-"
         }
         refreshTable()
+        refreshListFile()
     }
     
     @IBAction func clearCheckinStatus(_ sender: Any) {
         sendMessage(strToSend: "clearCheckin")
         for student in studentList {
             student.checkinStatus = false
-            student.checkinTime = "不可用"
+            student.checkinTime = "-"
         }
         refreshTable()
+        refreshListFile()
     }
     
     
@@ -92,10 +94,10 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
                 break
             }
             let tempStudent = student.components(separatedBy: ",")
-            if tempStudent[0] == "学号" {
+            if tempStudent[0] == "Student ID" {
                 continue
             }
-            guard let newStudent = Student(studentID: tempStudent[0], registerStatus: tempStudent[1] == "已注册" ? true : false, checkinStatus: false, checkinTime: "不可用") else {
+            guard let newStudent = Student(studentID: tempStudent[0], registerStatus: tempStudent[1] == "True" ? true : false, checkinStatus: tempStudent[2] == "True" ? true : false, checkinTime: tempStudent[3]) else {
                 fatalError("Error when retrive student from list")
             }
             studentList += [newStudent]
@@ -241,10 +243,10 @@ class ViewController: UIViewController, StreamDelegate, UITableViewDelegate, UIT
     }
     
     func refreshListFile() {
-        var strToWrite: String = "学号,注册状态,签到状态,签到时间\n"
+        var strToWrite: String = "Student ID,Register Status,Checkin Status,Checkin Time\n"
         for student in studentList {
             var tempStrToWrite: String = ""
-            tempStrToWrite += (student.studentID + "," + (student.registerStatus == true ? "已注册" : "未注册") + "," + (student.checkinStatus == true ? "已签到" : "未签到") + "," + student.checkinTime + "\n")
+            tempStrToWrite += (student.studentID + "," + (student.registerStatus == true ? "True" : "False") + "," + (student.checkinStatus == true ? "True" : "False") + "," + student.checkinTime + "\n")
             strToWrite += tempStrToWrite
         }
         try! self.manager.removeItem(atPath: docDirPath as String)
